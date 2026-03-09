@@ -13,11 +13,16 @@ function SignupForm() {
   return (
     <div className="flex-1 flex flex-col justify-center px-8 sm:px-12 lg:px-20 xl:px-24 bg-white relative z-10">
       <div className="max-w-[480px] w-full mx-auto space-y-8">
-        
+
         {/* Header */}
         <div>
           <Link href="/" className="flex items-center gap-2 mb-8 group w-fit">
-            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold shadow-sm group-hover:bg-brand-blue/90 transition-colors">M</div>
+            <div className="relative w-8 h-8 grid grid-cols-2 gap-[3px] p-1.5 bg-navy-900 rounded-lg shadow-sm group-hover:shadow-md transition-shadow">
+              <div className="rounded-[2px] bg-white"></div>
+              <div className="rounded-[2px] bg-brand-blue shadow-[0_0_6px_rgba(37,99,235,0.7)]"></div>
+              <div className="rounded-[2px] bg-brand-blue shadow-[0_0_6px_rgba(37,99,235,0.7)]"></div>
+              <div className="rounded-[2px] bg-white"></div>
+            </div>
             <span className="font-bold text-xl text-navy-800 tracking-tight">MetaMetric</span>
           </Link>
           <h1 className="text-3xl font-extrabold text-navy-800 tracking-tight mb-2">
@@ -30,15 +35,15 @@ function SignupForm() {
 
         {/* Form */}
         <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-          
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1.5">
-               <label className="text-xs font-bold uppercase tracking-widest text-slate-500">First Name</label>
-               <input type="text" className="w-full px-4 py-3 bg-navy-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue outline-none transition-all text-navy-900 font-medium" placeholder="Jane" />
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-500">First Name</label>
+              <input type="text" className="w-full px-4 py-3 bg-navy-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue outline-none transition-all text-navy-900 font-medium" placeholder="Jane" />
             </div>
             <div className="space-y-1.5">
-               <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Last Name</label>
-               <input type="text" className="w-full px-4 py-3 bg-navy-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue outline-none transition-all text-navy-900 font-medium" placeholder="Doe" />
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-500">Last Name</label>
+              <input type="text" className="w-full px-4 py-3 bg-navy-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue outline-none transition-all text-navy-900 font-medium" placeholder="Doe" />
             </div>
           </div>
 
@@ -67,8 +72,8 @@ function SignupForm() {
           </div>
 
           <div className="pt-2">
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="w-full flex items-center justify-center gap-2 bg-brand-blue text-white py-3.5 rounded-xl font-bold hover:bg-brand-blue/90 transition-all shadow-[0_10px_20px_rgba(37,99,235,0.15)] hover:shadow-[0_10px_20px_rgba(37,99,235,0.25)] hover:-translate-y-0.5"
             >
               Create Account <ArrowRight size={18} />
@@ -93,7 +98,7 @@ function SignupForm() {
 export default function SignupPage() {
   return (
     <div className="min-h-screen flex bg-white font-sans selection:bg-brand-blue selection:text-white">
-      
+
       <Suspense>
         <SignupForm />
       </Suspense>
@@ -104,7 +109,7 @@ export default function SignupPage() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
         <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-brand-blue/10 blur-[150px] rounded-full pointer-events-none" />
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}

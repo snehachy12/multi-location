@@ -1,34 +1,226 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
-/* Tailwind v4 Theme Configuration */
+/* ======================================================
+   Tailwind v4 Theme Configuration
+   ====================================================== */
 @theme {
-  /* Navy (Sidebar & Dark Elements) */
   --color-navy-900: #0F172A;
   --color-navy-800: #1E293B;
+  --color-navy-700: #334155;
   --color-navy-50: #F8FAFC;
 
-  /* Brand Colors */
   --color-brand-blue: #2563EB;
+  --color-brand-blue-light: #3B82F6;
+  --color-brand-blue-dark: #1D4ED8;
+  --color-brand-purple: #8B5CF6;
+  --color-brand-purple-light: #A78BFA;
 
-  /* Semantic Status Colors (The 5-Second Rule) */
   --color-status-success: #16A34A;
+  --color-status-success-light: #DCFCE7;
   --color-status-warning: #D97706;
+  --color-status-warning-light: #FEF3C7;
   --color-status-critical: #DC2626;
+  --color-status-critical-light: #FEE2E2;
 
-  /* Backgrounds */
   --color-bg-main: #F1F5F9;
   --color-bg-card: #FFFFFF;
+  --color-bg-subtle: #F8FAFC;
 
-  /* Fonts */
+  --color-border-default: #E2E8F0;
+  --color-border-subtle: #F1F5F9;
+
   --font-sans: "Inter", sans-serif;
 }
 
-/* Base styles */
+/* ======================================================
+   Base Styles
+   ====================================================== */
 @layer base {
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     background-color: var(--color-bg-main);
     color: var(--color-navy-900);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 99px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94A3B8;
+  }
+}
+
+/* ======================================================
+   Keyframe Animations
+   ====================================================== */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseRing {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes particle-explode {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translate(var(--end-x), var(--end-y)) scale(0);
+    opacity: 0;
+  }
+}
+
+/* ======================================================
+   Particle System
+   ====================================================== */
+
+/* Colors for particle JS injection */
+:root {
+  --color-1: #2563EB;
+  --color-2: #8B5CF6;
+  --color-3: #3B82F6;
+  --color-4: #A78BFA;
+}
+
+.particle {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.particle>span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: var(--color);
+  transform: translate(-50%, -50%);
+  animation: particle-explode var(--time) ease-out forwards;
+}
+
+/* ======================================================
+   Gooey Nav
+   ====================================================== */
+.gooey-nav-container {
+  position: relative;
+  padding: 4px;
+}
+
+.gooey-nav-container nav {
+  display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+.gooey-nav-container nav ul {
+  display: flex;
+  gap: 2px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.gooey-nav-container nav ul li {
+  position: relative;
+  z-index: 1;
+  padding: 8px 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #64748B;
+  transition: color 0.25s ease;
+}
+
+.gooey-nav-container nav ul li:hover,
+.gooey-nav-container nav ul li.active {
+  color: #2563EB;
+}
+
+.gooey-nav-container nav ul li a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  z-index: 2;
+}
+
+/* Floating pill highlight */
+.gooey-nav-container nav ul .effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  background: #EFF6FF;
+  border: 1px solid #DBEAFE;
+  z-index: 0;
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gooey-nav-container nav ul .effect.active {
+  opacity: 1;
 }
